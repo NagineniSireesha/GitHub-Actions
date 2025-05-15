@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Sample Step
         run: |
-          echo "This is a sample job ${{ github.event.inputs.runner_name }}"
+          echo "This is a sample job ${{ github.event.inputs.runner_name }}."
   conditional-job:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
