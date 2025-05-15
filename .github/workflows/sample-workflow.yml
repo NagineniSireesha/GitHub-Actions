@@ -1,1 +1,13 @@
+name: Sample Workflow
 
+on:
+  push:
+    branches:
+      - main
+jobs:
+  sample-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sample Step
+        run: |
+          echo "This is a sample job."
