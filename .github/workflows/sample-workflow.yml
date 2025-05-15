@@ -7,6 +7,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      actor_name:
+        Description: 'Who is running this workflow?'
+        Required: true
+        Default: Sireesha
   
 jobs:
   sample-job:
@@ -14,7 +19,7 @@ jobs:
     steps:
       - name: Sample Step
         run: |
-          echo "This is a sample job."
+          echo "This is a sample job ${{ github.event.inputs.actor_name }}"
   conditional-job:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
