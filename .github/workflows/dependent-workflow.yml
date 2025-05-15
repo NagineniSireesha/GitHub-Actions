@@ -1,0 +1,11 @@
+on:
+  workflow_run:
+    workflows: ["Sample Workflow"]
+    types:
+      - completed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test workflow job is triggered after Sample Workflow"
