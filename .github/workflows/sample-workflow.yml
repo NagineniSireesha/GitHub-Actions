@@ -15,3 +15,13 @@ jobs:
       - name: Sample Step
         run: |
           echo "This is a sample job."
+  conditional-job:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conditional Check
+        run: |
+          echo "This conditional job runs only when push to main branch"
+  
+          
+          
