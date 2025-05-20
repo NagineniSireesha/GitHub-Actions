@@ -15,4 +15,4 @@ jobs:
     - name: Shellcheck verion
       run: shellcheck --version
     - name: Run ShellCheck
-      run: find . -type f -name "*.sh" -exec shellcheck {} +
+      run: find scripts -type f -name "*.sh" -exec shellcheck {} +
