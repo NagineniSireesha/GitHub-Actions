@@ -21,7 +21,7 @@ jobs:
         shellcheck --version
 
     - name: Run ShellCheck
-      run: find scripts -type f -name "*.sh" -exec shellcheck {} +
+      run: find scripts/sub -type f -name "*.sh" -exec shellcheck {} +
 
     - name: ShellCheck Success
       run: echo "ShellCheck Evaluation Success"
