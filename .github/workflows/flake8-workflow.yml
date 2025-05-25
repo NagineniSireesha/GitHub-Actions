@@ -13,8 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: python version
+      run: python --version
+
     - name: Run flake8
       run: flake8 .
 
-    - name: ShellCheck Success
-      run: echo "ShellCheck Evaluation Success"
+    - name: flake8 Success
+      run: echo "flake8 Evaluation Success"
