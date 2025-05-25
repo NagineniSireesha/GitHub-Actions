@@ -19,9 +19,6 @@ jobs:
     - name: Install flake8
       run: python -m pip install flake8
 
-    - name: pylint version
-      run: pylint --version
-
     - name: Run flake8
       run: flake8 .
 
