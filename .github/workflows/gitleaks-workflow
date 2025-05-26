@@ -1,4 +1,4 @@
-name: gitleaks
+name: "Sample gitleaks"
 
 on:
   push:
