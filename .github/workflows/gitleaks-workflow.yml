@@ -20,4 +20,4 @@ jobs:
         gitleaks --version
 
     - name: Run Gitleaks
-      run: gitleaks detect --source scripts/python/leak.py --no-git -v
+      run: gitleaks detect --source scripts/python/leak.py -v
