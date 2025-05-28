@@ -20,4 +20,4 @@ jobs:
         gitleaks --version
 
     - name: Run Gitleaks
-      run: gitleaks detect --source . -v
+      run: gitleaks detect --source . --no-git -v
