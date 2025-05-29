@@ -11,5 +11,5 @@ fi
 # Create the file
 echo This file was created on: `date` > "$filename"
 
-echo '$filename created successfully with content:'
+echo "$filename created successfully with content:"
 cat "$filename"
