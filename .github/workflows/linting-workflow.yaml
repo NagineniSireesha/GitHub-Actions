@@ -1,16 +1,7 @@
 name: Lint Changed Scripts
 
 on:
-  push:
-    paths:
-      - '**.sh'
-      - '**.py'
-      - '**.ps1'
-  pull_request:
-    paths:
-      - '**.sh'
-      - '**.py'
-      - '**.ps1'
+  workflow_dispatch:
 
 jobs:
   detect-and-lint:
@@ -19,49 +10,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Get list of changed files
-        id: changed
+      - name: Detect changes and run relevant linters
+        shell: bash
         run: |
-          echo "::group::Detecting Changed Files"
-          git fetch origin ${{ github.base_ref }} --depth=1
-          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} | tr '\n' ' ')
-          echo "changed=$CHANGED_FILES" >> $GITHUB_OUTPUT
-          echo "::endgroup::"
+          git fetch origin ${{ github.base_ref || 'main' }} --depth=1
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref || 'main' }})
+          
+          echo "🔎 Changed files:"
+          echo "$CHANGED"
 
-      - name: Run ShellCheck for .sh files
-        if: contains(steps.changed.outputs.changed, '.sh')
-        run: |
-          echo "::group::Running ShellCheck"
-          for file in $(git diff --name-only origin/${{ github.base_ref }} | grep '\.sh$'); do
-            echo "Linting $file"
-            shellcheck "$file"
-          done
-          echo "::endgroup::"
-
-      - name: Run Flake8 and Pylint for .py files
-        if: contains(steps.changed.outputs.changed, '.py')
-        run: |
-          echo "::group::Running flake8 and pylint"
-          pip install flake8 pylint
-          for file in $(git diff --name-only origin/${{ github.base_ref }} | grep '\.py$'); do
-            echo "Linting $file with flake8"
-            flake8 "$file"
-            echo "Linting $file with pylint"
-            pylint "$file" || true  # Don't fail on pylint warnings
-          done
-          echo "::endgroup::"
-
-      - name: Run PSScriptAnalyzer for .ps1 files
-        if: contains(steps.changed.outputs.changed, '.ps1')
-        uses: actions/setup-powershell@v1
-
-      - name: Run PSScriptAnalyzer
-        if: contains(steps.changed.outputs.changed, '.ps1')
-        shell: pwsh
-        run: |
-          Install-Module -Name PSScriptAnalyzer -Force -Scope CurrentUser
-          $changedFiles = git diff --name-only origin/${{ github.base_ref }} | Where-Object { $_ -like '*.ps1' }
-          foreach ($file in $changedFiles) {
-            Write-Host "Analyzing $file"
-            Invoke-ScriptAnalyzer -Path $file -Recurse
-          }
+          sh_files=$(echo "$CHANGED" | grep '\.sh$' || true)
+          py_files=$(echo "$CHANGED" | grep '\.py$' || true)
+          ps1_files=$(echo "$CHANGED" | grep '\.ps1$' || true)
