@@ -2,4 +2,4 @@
 
 USER="Sireesha Nagineni"
 
-echo 'Hello: $USER'
+echo "Hello: $USER"
