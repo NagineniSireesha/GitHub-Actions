@@ -15,7 +15,10 @@ jobs:
       - name: Detect changed file
         shell: bash
         run: |
+          echo "📥 Fetching base branch..."
           git fetch origin ${{ github.base_ref }} --depth=1
+
+          echo "🔍 Checking changed files against origin/${{ github.base_ref }}"
           CHANGED=$(git diff --name-only origin/${{ github.base_ref }})
           
           echo "🔎 Changed files:"
