@@ -1,7 +1,9 @@
 name: Detect Changed File
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   detect-and-lint:
@@ -13,7 +15,7 @@ jobs:
       - name: Detect changed file
         shell: bash
         run: |
-          git fetch origin main --depth=2
+          git fetch origin main --depth=1
           CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
           
           echo "🔎 Changed files:"
