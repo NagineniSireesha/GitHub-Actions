@@ -1,5 +1,5 @@
 ##!/bin/bash
 
-USER="Sireesha Nagineni "
+USER="Sireesha Nagineni"
 
 echo 'Hello: $USER'
