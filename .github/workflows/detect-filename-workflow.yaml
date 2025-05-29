@@ -15,8 +15,8 @@ jobs:
       - name: Detect changed file
         shell: bash
         run: |
-          git fetch origin main --depth=1
-          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          git fetch origin ${{ github.base_ref }} --depth=1
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }})
           
           echo "🔎 Changed files:"
           echo "$CHANGED"
