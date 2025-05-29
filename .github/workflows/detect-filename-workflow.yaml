@@ -1,4 +1,4 @@
-name: Lint Changed Scripts
+name: Detect Changed File
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Detect changes and run relevant linters
+      - name: Detect changed file
         shell: bash
         run: |
           git fetch origin ${{ github.base_ref || 'main' }} --depth=1
