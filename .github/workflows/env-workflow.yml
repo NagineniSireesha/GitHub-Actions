@@ -6,10 +6,12 @@ on:
 jobs:
   sample-job:
     runs-on: ubuntu-latest
+    env: 
+      DEV_URL: ${{ env.DUMMY_URL }}
     steps:
       - name: PRINT ENV
         run: |
-          echo "ENV: ${{ env.DUMMY_URL }}"
+          echo "ENV: $DEV_URL"
   
           
           
