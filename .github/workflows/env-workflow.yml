@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: PRINT ENV
         run: |
-          echo "ENV: ${{ DUMMY_URL }}"
+          echo "ENV: ${{ env.DUMMY_URL }}"
   
           
           
