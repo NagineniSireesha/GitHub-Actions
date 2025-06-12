@@ -7,7 +7,7 @@ jobs:
   sample-job:
     runs-on: ubuntu-latest
     env: 
-      DEV_URL: ${{ var.DUMMY_URL }}
+      DEV_URL: ${{ vars.DUMMY_URL }}
     steps:
       - name: PRINT ENV
         run: |
