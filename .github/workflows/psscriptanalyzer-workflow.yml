@@ -19,4 +19,4 @@ jobs:
         $PSVersionTable.PSVersion
 
     - name: Run PSScriptAnalyzer
-      run: Invoke-ScriptAnalyzer -Path scripts/tanium.ps1
+      run: Invoke-ScriptAnalyzer -Path tanium.ps1
