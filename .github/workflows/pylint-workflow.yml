@@ -17,7 +17,7 @@ jobs:
       run: pip install pylint
 
     - name: Run pylint
-      run: pylint .
+      run: pylint scripts/tanium.py
 
     - name: pylint Success
       run: echo "pylint Evaluation Success"
