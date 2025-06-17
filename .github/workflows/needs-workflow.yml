@@ -50,6 +50,7 @@ jobs:
   job6:
     needs: [job1, job5]
     runs-on: ubuntu-latest
+    if: needs.job5.result == 'success'
     steps:
     - name: run
       run: echo "Running job6"
