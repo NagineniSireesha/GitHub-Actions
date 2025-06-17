@@ -43,7 +43,7 @@ jobs:
         needs.job3.result == 'success' ||
         needs.job4.result == 'success'
       )
-    }}
+     }}
     steps:
     - name: run
       run: echo "Running job5"
