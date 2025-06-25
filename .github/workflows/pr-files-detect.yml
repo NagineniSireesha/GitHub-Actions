@@ -1,4 +1,4 @@
-name: Detect Changed File
+name: Detect Changed File on PR
 
 on:
   pull_request:
