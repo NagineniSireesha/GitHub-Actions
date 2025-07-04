@@ -3,7 +3,7 @@ name: Detect Changed File
 on:
   pull_request:
     branches:
-      - feature/pr-files-detect
+      - feature/pr-files-detect-v1
 
 jobs:
   detect-and-lint:
