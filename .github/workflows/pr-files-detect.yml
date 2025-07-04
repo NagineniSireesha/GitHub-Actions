@@ -3,7 +3,7 @@ name: Detect Changed File
 on:
   pull_request:
     branches:
-      - feature/pr-files-detect
+      - feature/pr-files-detect-v1
 
 jobs:
   detect-and-lint:
@@ -19,7 +19,7 @@ jobs:
         run: |
           CHANGED=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...${{ github.sha }})
           
-          echo "🔎 Changed files: "
+          echo "🔎 Changed filess :"
           echo "$CHANGED"
 
           sh_files=$(echo "$CHANGED" | grep '\.sh$' || true)
