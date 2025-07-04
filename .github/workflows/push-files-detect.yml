@@ -3,7 +3,7 @@ name: Detect Changed Files
 on:
   push:
     branches:
-      - feature/push-files-detect
+      - feature/push-files-detect-v1
 
 jobs:
   detect-changes:
