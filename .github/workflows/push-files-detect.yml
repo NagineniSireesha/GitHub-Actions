@@ -1,0 +1,29 @@
+name: Detect Changed Files
+
+on:
+  push:
+    branches:
+      - feature/push-files-detect
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed files
+        id: file_changes
+        run: |
+            CHANGED=$(git diff --name-only --diff-filter=ACMR ${{ github.event.before }} ${{ github.sha }})
+
+            echo "Base SHA: ${{ github.event.before }}"
+            echo "Current SHA: ${{ github.sha }}"
+
+            echo "Changed files:"
+            echo "$CHANGED"
+
+        
