@@ -1,0 +1,37 @@
+name: Detect Changed Files
+
+on:
+  push:
+    branches:
+      - feature/push-files-detect
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect changed files
+        id: file_changes
+        run: |
+            BEFORE_SHA="${{ github.event.before }}"
+            CURRENT_SHA="${{ github.sha }}"
+
+            echo "Base SHA: $BEFORE_SHA"
+            echo "Current SHA: $CURRENT_SHA"
+
+            # Check for first commit
+            if [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+              echo "First commit detected. Listing files in this commit only."
+              CHANGED=$(git diff-tree --no-commit-id --name-only -r "$CURRENT_SHA")
+            else
+              echo "Standard commit. Getting diff between commits."
+              CHANGED=$(git diff --name-only --diff-filter=ACMR "$BEFORE_SHA" "$CURRENT_SHA")
+            fi
+
+            echo "Changed files:"
+            echo "$CHANGED"
+
+        
