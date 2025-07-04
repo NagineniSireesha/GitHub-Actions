@@ -19,7 +19,7 @@ jobs:
         run: |
           CHANGED=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...${{ github.sha }})
           
-          echo "🔎 Changed files:"
+          echo "🔎 Changed files: "
           echo "$CHANGED"
 
           sh_files=$(echo "$CHANGED" | grep '\.sh$' || true)
